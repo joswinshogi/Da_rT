@@ -1,4 +1,5 @@
-void main(){
+//future function can br used in main function.
+Future <void> main() async{
   sum();
   sumparams(10,20);
   var sum1=sumreturn(12, 13);
@@ -10,6 +11,8 @@ void main(){
   //calling future function
   sumFuture(100, 90);
   print('after\n');
+  add();
+  print('after future');
 
 }
 void sum(){
@@ -22,11 +25,17 @@ int sumreturn(int a,int b){
   return a+b;
 }
 //future functions
-Future<void> sumFuture(int a,int b) async{
+Future<int> sumFuture(int a,int b) async{
   //when calling future it will wait for few seconds  then only function will call
   await Future.delayed(Duration(seconds: 3));
   print('sum future ${a+b}');
+  return a+b;
 }
+Future<void> add() async{
+  await sumFuture(33, 44);
+  print('In just Sum');
+}
+
 
 
 //required parameters
